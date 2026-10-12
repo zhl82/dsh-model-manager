@@ -3,6 +3,16 @@
 给 DSH 的 provider 模型手动调整**多模态（图片）输入**和**思考级别**的本地小工具。
 零依赖安装：只用 Node 内置模块 + 本地 `js-yaml` 做校验。
 
+## 30 秒快速开始
+
+1. 安装 [Node.js](https://nodejs.org)(18 或更高版本的 LTS)。
+2. 下载本项目:点绿色 **Code → Download ZIP** 解压,或执行 `git clone https://github.com/zhl82/dsh-model-manager.git`。
+3. Windows 双击 `start.cmd`;其他系统在项目目录执行 `node src/server.js`。
+4. 浏览器打开 http://127.0.0.1:8791 ,选 provider 和模型,设置图片输入或思考级别,点「保存到配置」。
+5. 保存后重启 DSH Desktop 生效。
+
+> 程序会修改 `~/.dsh/profiles/desktop/cordis.patch.yml`,首次使用前建议先手动备份一份。
+
 ## 快速开始
 
 ```
@@ -120,3 +130,9 @@ node tools/ui-check.js         # 界面自检：无头 Chrome 渲染 + 交互 + 
 - 模型视觉能力无法自动确定：名称启发式会误判，最终以你的确认和实测为准。
 - `modelOverrides` 里的模型没有可编辑的 YAML 节点，界面会标注为不可编辑。
 - 只处理 `llm-pi-ai` 这一个 loader 条目的 `providers`；其它 loader 条目不受影响。
+
+## 许可证
+
+本项目采用 **GNU General Public License v3.0(GPL-3.0)** 授权,完整条款见 [LICENSE](LICENSE)。
+
+简单来说:你可以自由使用、修改和分发本软件;但如果你分发修改后的版本,也必须以 GPL-3.0 开源,并保留版权与许可证声明。
