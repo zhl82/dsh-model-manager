@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DSH 模型能力管理器</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%232f6fed'/%3E%3Cpath d='M4 11V5h2.6a3 3 0 0 1 0 6H4zm1.6-1.4h1a1.6 1.6 0 0 0 0-3.2h-1v3.2z' fill='%23fff'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="title">
+    <h1>DSH 模型能力管理器</h1>
+    <span class="sub">多模态输入与思考级别 · 定点编辑 cordis.patch.yml</span>
+  </div>
+  <div class="fileinfo">
+    <div class="pathrow">
+      <code id="configPath">读取中…</code>
+      <button id="btnReload" class="ghost">重新读取</button>
+      <button id="btnSwitch" class="ghost">切换文件</button>
+    </div>
+    <div id="status" class="status"></div>
+  </div>
+</header>
+
+<div id="banner" class="banner hidden"></div>
+
+<main>
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <span>Provider</span>
+      <span id="providerCount" class="pill">0</span>
+    </div>
+    <ul id="providerList" class="provider-list"></ul>
+  </aside>
+
+  <section class="panel">
+    <div id="providerHead" class="provider-head"></div>
+    <div class="bulkbar">
+      <span class="bulk-label">批量：</span>
+      <button data-bulk="input:on" class="mini">图片全部开启</button>
+      <button data-bulk="input:off" class="mini">图片全部关闭</button>
+      <button data-bulk="reason:standard" class="mini">思考：标准四档</button>
+      <button data-bulk="reason:false" class="mini">思考：显式关闭</button>
+      <button data-bulk="suggest" class="mini accent">按模型名智能建议</button>
+      <button data-bulk="clear" class="mini">重置本组改动</button>
+    </div>
+    <div id="modelTable" class="table-wrap"></div>
+  </section>
+</main>
+
+<footer class="bottombar">
+  <span id="dirtyInfo" class="dirty">没有未保存的改动</span>
+  <div class="actions">
+    <button id="btnBackups" class="ghost">备份与恢复</button>
+    <button id="btnResetAll" class="ghost">放弃全部改动</button>
+    <button id="btnPreview" class="secondary">预览差异</button>
+    <button id="btnSave" class="primary" disabled>保存到配置</button>
+    <button id="btnShutdown" class="ghost danger" title="停止本地服务进程">关闭服务</button>
+  </div>
+</footer>
+
+<dialog id="diffDialog">
+  <div class="dialog-head">
+    <h2 id="diffTitle">修改预览</h2>
+    <button class="ghost" data-close="diffDialog">关闭</button>
+  </div>
+  <div id="diffSummary" class="dialog-summary"></div>
+  <pre id="diffBody" class="diff"></pre>
+  <div class="dialog-foot">
+    <span id="diffHint" class="hint">确认无误后点击「写入配置」，写入前会自动备份。</span>
+    <span class="spacer"></span>
+    <button class="ghost" data-close="diffDialog">取消</button>
+    <button id="btnConfirmSave" class="primary">写入配置</button>
+  </div>
+</dialog>
+
+<dialog id="backupDialog">
+  <div class="dialog-head">
+    <h2>备份与恢复</h2>
+    <button class="ghost" data-close="backupDialog">关闭</button>
+  </div>
+  <div id="backupList" class="backups"></div>
+  <div class="dialog-foot">
+    <span id="backupDir" class="hint"></span>
+  </div>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>

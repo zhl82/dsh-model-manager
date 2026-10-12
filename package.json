@@ -1,0 +1,14 @@
+{
+  "name": "dsh-model-manager",
+  "version": "0.1.0",
+  "private": true,
+  "description": "本地 GUI：编辑 DSH profile 配置中 provider 模型的多模态输入与思考级别（定点编辑 YAML，保留注释与格式）",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

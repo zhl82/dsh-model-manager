@@ -1,0 +1,11 @@
+# 运行时生成的备份（含你的真实配置副本，不要上传）
+backups/
+
+# 界面自检截图（可能包含你的模型清单）
+ui-check.png
+
+# 依赖与系统文件
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
